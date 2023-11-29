@@ -1,1 +1,132 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Student-Info</title>
+    <style>
+        .clickable {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container border p-4">
+    <form id="myForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+        </div>
 
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+        </div>
+
+        <div class="form-group">
+            <label for="studentGender">Gender</label>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="male" name="gender" value="male">
+                <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="female" name="gender" value="female">
+                <label class="form-check-label" for="female">Female</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="studentDOB">Date of Birth</label>
+            <input type="date" class="form-control" id="studentDOB">
+        </div>
+
+        <div class="form-group">
+            <label for="courseSelect">Select Course</label>
+            <select class="form-control" id="courseSelect">
+                <option value="english">English</option>
+                <option value="tamil">Tamil</option>
+                <option value="math">Math</option>
+                <option value="science">Science</option>
+                <option value="social">Social</option>
+            </select>
+        </div>
+
+        <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <table class="table table-bordered"  id="dataTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Course</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+<script>
+
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the form from submitting the traditional way
+
+        // Get form values
+        var name = document.getElementById('name').value;
+        var email = document.getElementById("email").value;
+        var gender = document.querySelector('input[name="gender"]:checked').value;
+        var dob = document.getElementById("studentDOB").value;
+        var course = document.getElementById("courseSelect").value;
+
+        // Create a new table row
+        var tableRow = document.createElement('tr');
+
+        // Create table cells for the data
+        var nameCell  = document.createElement('td');
+        nameCell.textContent = name; // Set the text content of the cells
+        tableRow.appendChild(nameCell); // Append cells to the row
+
+        // Create table cells for the data
+        var emailCell  = document.createElement('td');
+        emailCell.textContent = email; // Set the text content of the cells
+        tableRow.appendChild(emailCell); // Append cells to the row
+
+        // Create table cells for the data
+        var genderCell  = document.createElement('td');
+        genderCell.textContent = gender; // Set the text content of the cells
+        tableRow.appendChild(genderCell); // Append cells to the row
+
+        // Create table cells for the data
+        var dobCell  = document.createElement('td');
+        dobCell.textContent = dob; // Set the text content of the cells
+        tableRow.appendChild(dobCell); // Append cells to the row
+
+        // Create table cells for the data
+        var courseCell  = document.createElement('td');
+        courseCell.textContent = course; // Set the text content of the cells
+        tableRow.appendChild(courseCell); // Append cells to the row
+
+        // Create table cells for the data
+        var actionCell  = document.createElement('td');
+        actionCell.innerHTML = "<button type='button' class='btn btn-primary clickable' onclick='deleteItem(event)'>Delete</button>"; // Set the text content of the cells
+        tableRow.appendChild(actionCell); // Append cells to the row
+
+        // Append the row to the table
+        document.querySelector('#dataTable tbody').appendChild(tableRow);
+
+    });
+
+    function deleteItem(event){
+        var row = event.target.closest('tr');// finds the closest <tr> ancestor of the clicked button. This is often used when you have event listeners on child elements (like buttons) within a larger structure (like a table row) and you want to interact with or manipulate elements in that larger structure.
+        row.remove();
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
