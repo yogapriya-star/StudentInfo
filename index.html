@@ -12,6 +12,7 @@
 </head>
 <body>
 <div class="container border p-4">
+    <h1 class="display-3 text-center">Students Info</h1>
     <form id="myForm">
         <div class="form-group">
             <label for="name">Name</label>
@@ -118,6 +119,15 @@
         // Append the row to the table
         document.querySelector('#dataTable tbody').appendChild(tableRow);
 
+        //To clear the form after submitting
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("studentDOB").value = "";
+        document.getElementById("courseSelect").value = "english";
+        var radioButtons = document.getElementsByName("gender");
+        for (var i = 0; i < radioButtons.length; i++) {
+            radioButtons[i].checked = false;
+        }
     });
 
     function deleteItem(event){
